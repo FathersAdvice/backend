@@ -6,7 +6,6 @@ export default [
   {
     path: "/",
     element: <AuthPage />,
-    errorElement: <ErrorPage />,
   },
   {
     path: "/fathers-advice",

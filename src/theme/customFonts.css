@@ -1,0 +1,29 @@
+@font-face {
+  font-family: LogoFonts;
+  src: url("fonts/Logo/logo.ttf") format("truetype");
+  font-size: 15px;
+}
+
+@font-face {
+  font-family: TitleFontBold;
+  src: url("fonts/Title/Title-bold.ttf") format("truetype");
+  font-size: 15px;
+}
+
+@font-face {
+  font-family: TitleFontItalic;
+  src: url("fonts/Title/Title-italic.ttf") format("truetype");
+  font-size: 15px;
+}
+
+@font-face {
+  font-family: TitleFontExtraBold;
+  src: url("fonts/Title/Title-extra-bold.ttf") format("truetype");
+  font-size: 15px;
+}
+
+@font-face {
+  font-family: TitleFontExtraItalic;
+  src: url("fonts/Title/Title-italic-extra.ttf") format("truetype");
+  font-size: 15px;
+}
