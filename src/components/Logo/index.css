@@ -1,0 +1,63 @@
+@import "../../theme/customFonts.css";
+
+.logotype-fathers-advice {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  font-family: LogoFonts;
+  color: white;
+  padding-right: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.logotype-fathers-advice .ripple {
+  position: absolute;
+  border: 2px solid #fff;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+  animation: animate 2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 1000px;
+    height: 1000px;
+    border-width: 10px;
+    box-shadow: 40px 20px 40px white inset;
+  }
+}
+
+.logotype-fathers-advice__icons {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: TitleFontItalic;
+  color: #89cff0;
+}
+
+.logotype-fathers-advice__icons svg {
+  fill: #89cff0;
+}
+
+.logotype-fathers-advice__letter {
+  border-bottom: 1px solid #89cff0;
+  overflow: hidden;
+  z-index: 99;
+}
+
+.logotype-fathers-advice__br {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: #89cff0;
+  top: 0;
+}
