@@ -49,7 +49,7 @@ const Logo = ({ size }) => {
     let logoContainer = document.querySelector(".logotype-fathers-advice");
     logoContainer.onclick = function (e) {
       const { pageY, pageX, target } = e;
-      const color = ["#fff", "#89cff0", "black", "orange"];
+      const color = ["#fff", "#89cff0", "#dcdcdc", "#ffc0cb"];
       const x = pageX - target.offsetLeft;
       const y = pageY - target.offsetTop;
       const ripple = document.createElement("span");
