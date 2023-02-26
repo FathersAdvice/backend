@@ -1,11 +1,13 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import {
   convertSimpleFormat,
   convertObjectFormat,
 } from "../../helpers/css-helpers";
 import { PropTypes } from "prop-types";
+import classname from 'classname';
 
+import {classFonts} from '../../theme';
 import "./index.css";
 
 const checkSize = (size) => {
@@ -65,7 +67,7 @@ const Logo = ({ size }) => {
   }, [size]);
 
   return (
-    <div className="logotype-fathers-advice" style={styles}>
+    <div className={classname(classFonts.themeLogoFonts ,"logotype-fathers-advice")} style={styles}>
       <div
         className="logotype-fathers-advice__letter"
         style={{ height: convertSimpleFormat(sizeLogo.height / 2) }}
@@ -73,7 +75,7 @@ const Logo = ({ size }) => {
         Father`sAdvice
       </div>
       <div
-        className="logotype-fathers-advice__icons"
+        className={classname(classFonts.themeFontTextItalic, "logotype-fathers-advice__icons")}
         style={{ width: convertSimpleFormat(sizeLogo.width / 2) }}
       >
         <span style={{ fontSize: convertSimpleFormat(sizeLogo.fontSize / 3) }}>

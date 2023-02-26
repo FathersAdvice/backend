@@ -27,3 +27,20 @@
   src: url("fonts/Title/Title-italic-extra.ttf") format("truetype");
   font-size: 15px;
 }
+
+
+.themeFontText {
+  font-family: 'TitleFontExtraItalic';
+}
+
+.themeFontTextBold {
+  font-family: 'TitleFontExtraBold';
+}
+
+.themeLogoFonts {
+  font-family: 'LogoFonts';
+}
+
+.themeFontTextItalic {
+  font-family: 'TitleFontItalic';
+}

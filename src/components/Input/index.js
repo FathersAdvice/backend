@@ -14,12 +14,15 @@ const Input = ({
   classname,
 }) => {
   const onChangeHandler = ({ target: { value } }) => {
-    setFieldForm((prevState) => ({ ...prevState, [label]: value }));
+    setFieldForm((prevState) => ({
+      ...prevState,
+      [label]: value,
+    }));
   };
   return (
     <TextField
       id="standard-basic"
-      label={label}
+      label={label.toUpperCase()}
       variant={variant}
       value={value}
       className={classname}

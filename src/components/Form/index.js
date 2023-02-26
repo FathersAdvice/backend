@@ -24,6 +24,7 @@ const styles = makeStyles((theme) => {
     },
     inputForm: {
       marginTop: "5px !important",
+      fontSize: "15px",
     },
     FormTitle: {
       display: "flex",
@@ -76,11 +77,7 @@ const Form = ({
   const style = styles(themeColor);
   const [fieldForm, setFieldForm] = useState({});
   const [disabled, setDisabled] = useState(false);
-  useEffect(() => {
-    InputComponents.forEach(({ props: { label } }) => {
-      isEmpty(fieldForm[label]) ? setDisabled(true) : setDisabled(false);
-    });
-  }, [fieldForm, setFieldForm]);
+
   const InputComponents = useMemo(() => {
     return (
       inputComponents.length > 0 &&
@@ -110,6 +107,13 @@ const Form = ({
       )
     );
   }, [inputComponents]);
+
+  useEffect(() => {
+    InputComponents.forEach(({ props: { label } }) => {
+      isEmpty(fieldForm[label]) ? setDisabled(true) : setDisabled(false);
+    });
+  }, [fieldForm, setFieldForm, InputComponents]);
+
   return (
     <div className={classname(classes, style.FormContainer)}>
       <div className={style.FormTitle}>{title}</div>
@@ -124,7 +128,7 @@ const Form = ({
         {FormFooterBlock ? (
           <FormFooterBlock />
         ) : (
-          <div className="button">
+          <div className="button" onClick={() => onSubmit(fieldForm)}>
             <span>SEND</span>
             <IconButton>
               <SendIcon sx={{ color: "white" }} />
