@@ -1,10 +1,8 @@
-@import "../../theme/customFonts.css";
 
 .logotype-fathers-advice {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
-  font-family: LogoFonts;
   color: white;
   padding-right: 5px;
   position: relative;
@@ -40,7 +38,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-family: TitleFontItalic;
   color: #89cff0;
 }
 

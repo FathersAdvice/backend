@@ -1,3 +1,4 @@
+
 export const darkThemeColor = {
   totalColor: "#180A0A",
   icons: "#F10086",

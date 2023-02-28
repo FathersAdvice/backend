@@ -8,12 +8,14 @@
 /.idea
 yarn.lock
 /design
+/server/graphql
 
 # testing
 /coverage
 
 # production
 /build
+
 
 # misc
 .DS_Store
