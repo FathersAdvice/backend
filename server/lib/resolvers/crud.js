@@ -40,3 +40,30 @@ const writeFile = (filename, data, field) => {
   return status;
 };
 exports.writeFile = writeFile;
+const deleteFile = (filename, id, field) => {
+  let status;
+  const dataSaved = readFile(field).filter(exsistData => exsistData.id !== id);
+  console.log({
+    dataSaved
+  });
+  if (dataSaved.length > 0) {
+    try {
+      _fs.default.writeFileSync((0, _helpers.getFilename)(filename), dataSaved);
+      status = {
+        msg: "Successful removal",
+        status: true
+      };
+    } catch (e) {
+      status = {
+        msg: "Error remove",
+        status: false
+      };
+    }
+  } else {
+    status = {
+      msg: "No match found",
+      status: false
+    };
+  }
+  return status;
+};

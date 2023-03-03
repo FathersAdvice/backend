@@ -28,6 +28,13 @@ const resolvers = {
         newUser.avatar = avatar;
       }
       return (0, _crud.writeFile)("db.json", newUser, "users");
+    },
+    removeUser: async (_, _ref) => {
+      let {
+        id
+      } = _ref;
+      const response = await (0, _crud.deleteFile)("db.json", id, "users");
+      return response;
     }
   }
 };

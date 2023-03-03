@@ -1,5 +1,6 @@
 import pathModule from "path";
 import * as bcrypt from "bcrypt";
+import sortBy from "lodash/sortBy";
 import { NON_UNIQ_FIELD_DATA } from "./constants";
 
 const onCheckField = (checkedObject, keys, checkObject) => {
@@ -37,6 +38,8 @@ export const getFilename = (path) =>
 export const formatterData = (prevData, data, key) => {
   const id = createID(prevData);
   data.id = id;
-  prevData = prevData ? { [key]: [...prevData, data] } : { [key]: [data] };
+  prevData = prevData
+    ? { [key]: sortBy([...prevData, data], "id") }
+    : { [key]: [data] };
   return JSON.stringify(prevData);
 };
