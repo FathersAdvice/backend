@@ -1,25 +1,37 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
 import typeDefs from "./typeDefs";
-import resolvers from './resolver';
+import resolvers from "./resolvers";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import express from "express";
+import http from "http";
+import cors from "cors";
+import bodyParser from "body-parser";
+console.log({ typeDefs });
 
-
+const PORT = 4002;
+const app = express();
+const httpServer = http.createServer(app);
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
-
-let { url } = new Promise((resolve, reject)=> {
-    try {
-        const url = startStandaloneServer(server, {
-            listen: { port: 4002 },
-        })
-        resolve(url);
-    }catch(e){
-        reject(e);
-    };
-}).then(resolvers => resolvers);
-
-
-console.log(`🚀  Server ready at: ${url}`);
+const startServer = async (server, port) => {
+  await server.start();
+  app.use(
+    "/api/graphql",
+    cors(),
+    bodyParser.json({ limit: "50mb" }),
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+    })
+  );
+  const listen = await new Promise((resolve) =>
+    httpServer.listen({ port: port }, resolve)
+  );
+};
+startServer(server, PORT);
+// Modified server startup
+console.log(`🚀 Server ready at http://localhost:${PORT}/api/graphql`);

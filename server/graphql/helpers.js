@@ -1,5 +1,6 @@
 import pathModule from "path";
-import * as crypto from "crypto";
+import * as bcrypt from "bcrypt";
+import sortBy from "lodash/sortBy";
 import { NON_UNIQ_FIELD_DATA } from "./constants";
 
 const onCheckField = (checkedObject, keys, checkObject) => {
@@ -13,6 +14,14 @@ const onCheckField = (checkedObject, keys, checkObject) => {
   return dataCheckOnUniq;
 };
 
+export const createID = (dataExsist) => {
+  const lastElement = dataExsist.length - 1;
+  if (dataExsist) {
+    return dataExsist[lastElement]["id"] + 1;
+  }
+  return 1;
+};
+
 export const checkUniqElements = (dataExsist, data) => {
   const keys = Object.keys(data).filter(
     (key) => !NON_UNIQ_FIELD_DATA.includes(key)
@@ -20,15 +29,17 @@ export const checkUniqElements = (dataExsist, data) => {
   return onCheckField(dataExsist, keys, data);
 };
 
-export const cryptoPassword = (password) =>
-  crypto.createHmac("sha256", password).digest("hex");
+export const cryptoPassword = async (password) =>
+  await bcrypt.hash(password, 10);
 
 export const getFilename = (path) =>
   pathModule.resolve(__dirname, `db/${path}`);
 
 export const formatterData = (prevData, data, key) => {
-  prevData = prevData[key]
-    ? { [key]: [...prevData[key], data] }
+  const id = createID(prevData);
+  data.id = id;
+  prevData = prevData
+    ? { [key]: sortBy([...prevData, data], "id") }
     : { [key]: [data] };
   return JSON.stringify(prevData);
 };
