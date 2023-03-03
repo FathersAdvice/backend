@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { capitalize } from "lodash";
 import TextField from "@mui/material/TextField";
 import PropTypes from "prop-types";
 
@@ -22,7 +23,7 @@ const Input = ({
   return (
     <TextField
       id="standard-basic"
-      label={label.toUpperCase()}
+      label={capitalize(label)}
       variant={variant}
       value={value}
       className={classname}

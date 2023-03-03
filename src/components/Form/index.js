@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
-import { isEmpty } from "lodash";
+import { validator } from "../../helpers/validator";
 import Input from "../Input";
 import { darkThemeColor, lightThemeColor } from "../../theme/color/constants";
 import { keyGenerateForMap } from "../../helpers/generate";
@@ -77,6 +77,7 @@ const Form = ({
   const style = styles(themeColor);
   const [fieldForm, setFieldForm] = useState({});
   const [disabled, setDisabled] = useState(false);
+  const [validForm, setValidForm] = useState({});
 
   const InputComponents = useMemo(() => {
     return (
@@ -110,10 +111,26 @@ const Form = ({
 
   useEffect(() => {
     InputComponents.forEach(({ props: { label } }) => {
-      isEmpty(fieldForm[label]) ? setDisabled(true) : setDisabled(false);
+      if (fieldForm[label]) {
+        const { valid, msg } = validator(fieldForm[label], label);
+        setValidForm((prevState) => ({
+          ...prevState,
+          [label]: { valid, msg },
+        }));
+      } else {
+        setValidForm((prevState) => ({ ...prevState, [label]: false }));
+      }
     });
   }, [fieldForm, setFieldForm, InputComponents]);
-
+  console.log(validForm);
+  useEffect(() => {
+    let converValidStatusToInt = false;
+    let countField = Object.keys(validForm).length;
+    for (const [_, { valid = false }] of Object.entries(validForm)) {
+      converValidStatusToInt += valid;
+    }
+    setDisabled(converValidStatusToInt !== countField);
+  }, [validForm, setValidForm]);
   return (
     <div className={classname(classes, style.FormContainer)}>
       <div className={style.FormTitle}>{title}</div>
