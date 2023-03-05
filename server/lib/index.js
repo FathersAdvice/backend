@@ -11,9 +11,6 @@ var _http = _interopRequireDefault(require("http"));
 var _cors = _interopRequireDefault(require("cors"));
 var _bodyParser = _interopRequireDefault(require("body-parser"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-console.log({
-  typeDefs: _typeDefs.default
-});
 const PORT = 4002;
 const app = (0, _express2.default)();
 const httpServer = _http.default.createServer(app);
