@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "username": "Aleksey",
+      "password": "204858",
+      "email": "lebedik.leha@gmail.com"
+    },
+    {
+      "username": "Darla",
+      "password": "204858",
+      "email": "darla@gmail.com"
+    },
+    {
+      "username": "Makar",
+      "password": "204858",
+      "email": "makar112@gmail.com"
+    },
+    {
+      "username": "Tormas",
+      "password": "204858",
+      "email": "dastar@gmail.com"
+    },
+    {
+      "username": "Donga",
+      "password": "204858",
+      "email": "Donga@gmail.com"
+    },
+    {
+      "username": "Closya",
+      "password": "204858",
+      "email": "Closor@gmail.com"
+    }
+  ]
+}

@@ -1,6 +1,5 @@
-import ErrorPage from "./ErrorPage";
-import GraphQlServer from "./GraphQlServer";
+import ErrorPage from "./Error";
 import LoaderPage from "./LoaderPage";
-import AuthPage from "./AuthPage";
+import AuthPage from "./Auth";
 
-export { ErrorPage, GraphQlServer, LoaderPage, AuthPage };
+export { ErrorPage, LoaderPage, AuthPage };
