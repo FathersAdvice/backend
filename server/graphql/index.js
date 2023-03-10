@@ -1,6 +1,7 @@
-import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
 import { ApolloServer } from "@apollo/server";
+import path from 'path';
+import fs from 'fs';
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
@@ -12,7 +13,7 @@ const PORT = 4002;
 const app = express();
 const httpServer = http.createServer(app);
 const server = new ApolloServer({
-  typeDefs,
+  typeDefs: fs.readFileSync(path.join(__dirname, './typeDefs/schema.graphql'), 'utf8'),
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });

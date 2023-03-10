@@ -1,9 +1,10 @@
 "use strict";
 
 require("core-js/modules/es.promise.js");
-var _typeDefs = _interopRequireDefault(require("./typeDefs"));
 var _resolvers = _interopRequireDefault(require("./resolvers"));
 var _server = require("@apollo/server");
+var _path = _interopRequireDefault(require("path"));
+var _fs = _interopRequireDefault(require("fs"));
 var _express = require("@apollo/server/express4");
 var _drainHttpServer = require("@apollo/server/plugin/drainHttpServer");
 var _express2 = _interopRequireDefault(require("express"));
@@ -15,7 +16,7 @@ const PORT = 4002;
 const app = (0, _express2.default)();
 const httpServer = _http.default.createServer(app);
 const server = new _server.ApolloServer({
-  typeDefs: _typeDefs.default,
+  typeDefs: _fs.default.readFileSync(_path.default.join(__dirname, './typeDefs/schema.graphql'), 'utf8'),
   resolvers: _resolvers.default,
   plugins: [(0, _drainHttpServer.ApolloServerPluginDrainHttpServer)({
     httpServer
