@@ -1,13 +1,6 @@
-import userResolver from './userResolver';
-import adviceResolver from './adviseResolver';
+import userResolvers from './user';
+import adviceResolvers from './advice';
 import _ from 'lodash';
 
-const resolvers = {
-  Query:
-    _.merge(userResolver.query, adviceResolver.query),
-  Mutation: {
-    ...userResolver.mutation,
-  },
-};
-console.log({ resolvers });
-export default resolvers;
+
+export default _.merge(adviceResolvers, userResolvers);

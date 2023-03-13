@@ -1,21 +1,22 @@
 import resolvers from "./resolvers";
 import { ApolloServer } from "@apollo/server";
-import path from 'path';
-import fs from 'fs';
+import typeDefs from './typeDefs';
 import { expressMiddleware } from "@apollo/server/express4";
-import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
 import http from "http";
 import cors from "cors";
 import bodyParser from "body-parser";
 
+import { NON_UNIQ_FIELD_DATA } from './constants';
+
 const PORT = 4002;
 const app = express();
 const httpServer = http.createServer(app);
+
+
 const server = new ApolloServer({
-  typeDefs: fs.readFileSync(path.join(__dirname, './typeDefs/schema.graphql'), 'utf8'),
+  typeDefs,
   resolvers,
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
 const startServer = async (server, port) => {
@@ -25,7 +26,7 @@ const startServer = async (server, port) => {
     cors(),
     bodyParser.json({ limit: "50mb" }),
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
+      context: async ({ req }) => ({ token: req.headers.token, NON_UNIQ_FIELD_DATA, request: req }),
     })
   );
   const listen = await new Promise((resolve) =>
