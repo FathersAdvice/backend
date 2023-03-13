@@ -29,7 +29,7 @@ const onCheckField = (checkedObject, keys, checkObject) => {
 };
 const createID = dataExsist => {
   const lastElement = dataExsist.length - 1;
-  if (dataExsist) {
+  if (dataExsist.length > 0) {
     return dataExsist[lastElement]["id"] + 1;
   }
   return 1;
@@ -45,7 +45,7 @@ exports.cryptoPassword = cryptoPassword;
 const getFilename = path => _path.default.resolve(__dirname, "db/".concat(path));
 exports.getFilename = getFilename;
 const formatterData = (prevData, data, key) => {
-  const id = createID(prevData);
+  const id = createID(prevData || []);
   data.id = id;
   prevData = prevData ? {
     [key]: (0, _sortBy.default)([...prevData, data], "id")

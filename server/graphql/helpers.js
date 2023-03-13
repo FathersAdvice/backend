@@ -16,7 +16,7 @@ const onCheckField = (checkedObject, keys, checkObject) => {
 
 export const createID = (dataExsist) => {
   const lastElement = dataExsist.length - 1;
-  if (dataExsist) {
+  if (dataExsist.length > 0) {
     return dataExsist[lastElement]["id"] + 1;
   }
   return 1;
@@ -36,7 +36,7 @@ export const getFilename = (path) =>
   pathModule.resolve(__dirname, `db/${path}`);
 
 export const formatterData = (prevData, data, key) => {
-  const id = createID(prevData);
+  const id = createID(prevData || []);
   data.id = id;
   prevData = prevData
     ? { [key]: sortBy([...prevData, data], "id") }

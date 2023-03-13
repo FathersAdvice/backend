@@ -1,28 +1,22 @@
 "use strict";
 
 require("core-js/modules/es.promise.js");
-var _typeDefs = _interopRequireDefault(require("./typeDefs"));
 var _resolvers = _interopRequireDefault(require("./resolvers"));
 var _server = require("@apollo/server");
+var _typeDefs = _interopRequireDefault(require("./typeDefs"));
 var _express = require("@apollo/server/express4");
-var _drainHttpServer = require("@apollo/server/plugin/drainHttpServer");
 var _express2 = _interopRequireDefault(require("express"));
 var _http = _interopRequireDefault(require("http"));
 var _cors = _interopRequireDefault(require("cors"));
 var _bodyParser = _interopRequireDefault(require("body-parser"));
+var _constants = require("./constants");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-console.log({
-  typeDefs: _typeDefs.default
-});
 const PORT = 4002;
 const app = (0, _express2.default)();
 const httpServer = _http.default.createServer(app);
 const server = new _server.ApolloServer({
   typeDefs: _typeDefs.default,
-  resolvers: _resolvers.default,
-  plugins: [(0, _drainHttpServer.ApolloServerPluginDrainHttpServer)({
-    httpServer
-  })]
+  resolvers: _resolvers.default
 });
 const startServer = async (server, port) => {
   await server.start();
@@ -34,7 +28,9 @@ const startServer = async (server, port) => {
         req
       } = _ref;
       return {
-        token: req.headers.token
+        token: req.headers.token,
+        NON_UNIQ_FIELD_DATA: _constants.NON_UNIQ_FIELD_DATA,
+        request: req
       };
     }
   }));
