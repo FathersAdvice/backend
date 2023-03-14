@@ -17,6 +17,7 @@ export default gql`
         avatar: String
     }
     type MessageStatus {
+        token: String
         status: Boolean!
         msg: String!
         user: User
