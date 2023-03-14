@@ -1,1 +1,23 @@
-{"users":[{"username":"amadey","password":"$2b$10$iswzvEf3WcqzZJhiMNRizORYWXS1gDu1fe4FD5o6fUpV6hLznn5qi","email":"amadey@gmail.com","id":3},{"username":"joh","password":"$2b$10$DCpWGxgMwtwKp90Ve0VAfOAe/j9NHGaQPzxrAqh88R30DpM3S/0fq","email":"makend@gmail.com","id":2}], "advice": []}
+{
+    "users": [
+        {
+            "username": "joh",
+            "password": "$2b$10$DCpWGxgMwtwKp90Ve0VAfOAe/j9NHGaQPzxrAqh88R30DpM3S/0fq",
+            "email": "makend@gmail.com",
+            "id": 2
+        },
+        {
+            "username": "amadey",
+            "password": "$2b$10$iswzvEf3WcqzZJhiMNRizORYWXS1gDu1fe4FD5o6fUpV6hLznn5qi",
+            "email": "amadey@gmail.com",
+            "id": 3
+        },
+        {
+            "username": "johig",
+            "password": "$2b$10$SDZpCOT/Lso5d2ZT.6vY1.Xu6XOIhpljnT9MxwqZHIjaA6T9y5bxC",
+            "email": "joh@gmail.com",
+            "id": 4
+        }
+    ],
+    "advice": []
+}

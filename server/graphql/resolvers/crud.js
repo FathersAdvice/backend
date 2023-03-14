@@ -2,7 +2,6 @@ import fs from "fs";
 import {
   formatterData,
   getFilename,
-  cryptoPassword,
   checkUniqElements,
 } from "../helpers";
 
@@ -21,7 +20,7 @@ const updateFile = (key, action, id, data) => {
       if (foundData) {
         let dataRaw;
         Object.entries(data).forEach(([field, value]) => {
-          dataRaw = { [key] : [...exsistFile.filter(d=> d.id !== id) , { ...foundData, [field]: value }]};
+          dataRaw = { [key]: [...exsistFile.filter(d => d.id !== id), { ...foundData, [field]: value }] };
         });
         fs.writeFileSync(getFilename("db.json"), JSON.stringify(dataRaw));
         status = { msg: "Successful data change put!", status: true, user: foundData };
